@@ -1,0 +1,58 @@
+{% extends 'inicio.html' %}
+
+{% block content %}
+    <main>
+<!--        <h1>{{pessoas}}</h1>-->
+        {% if not valor_ or valor_ == 'False' %}
+            <span style="display: block">
+                <form method="get" action="{{url_for('pessoas', valor_=valor_)}}">
+                    <label for="tabela2">Tabela</label>
+                    <input type="checkbox" name="tabela" onchange="this.form.submit()" id="tabela2">
+                </form>
+            </span>
+            {% for p in pessoas %}
+                {% if p['nome_pessoa'] != session['username'] %}
+                    <card class="card">
+                        <h1>#{{p['id_pessoa']}}</h1>
+                        <h2>{{p['nome_pessoa']}}</h2>
+                        <p>{{p['papel']}}</p>
+                        <p>{{p['email']}}</p>
+                        <p>{{p['salario']}} R$</p>
+                    </card>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <form method="get" action="{{url_for('pessoas', valor_=valor_)}}">
+                <label for="tabela">Tabela</label>
+                <input type="checkbox" name="tabela" onchange="this.form.submit()" id="tabela" checked>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item 1</th>
+                        <th>Item 2</th>
+                        <th>Item 3</th>
+                        <th>Item 4</th>
+                        <th>Item 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Item 1</th>
+                        <th>Item 2</th>
+                        <th>Item 3</th>
+                        <th>Item 4</th>
+                        <th>Item 5</th>
+                    </tr>
+                    <tr>
+                        <th>Item 1</th>
+                        <th>Item 2</th>
+                        <th>Item 3</th>
+                        <th>Item 4</th>
+                        <th>Item 5</th>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </main>
+{% endblock %}

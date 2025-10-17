@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Início</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" href="../static/imgdois.png" type="image/png">
+
+</head>
+<body>
+    <div id="flash-data"
+     data-flashes='{{ get_flashed_messages(with_categories=true) | tojson | safe }}'></div>
+
+    <script>
+        const flashContainer = document.getElementById('flash-data');
+        const flashMessages = JSON.parse(flashContainer.dataset.flashes || '[]');
+        flashMessages.forEach(([category, message]) => {
+            const div = document.createElement('div');
+            div.textContent = message;
+            div.className = `flash-message ${category}`;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 4000);
+        });
+    </script>
+
+    <nav id="nav">
+        <div class="container-nav">
+            <div class="header-nav">
+                <img onclick="closeNav()" id="close-menu" src="https://images.icon-icons.com/2518/PNG/512/x_icon_150997.png" alt="Fechar">
+            </div>
+            <div class="content-nav">
+                <a href="">FUNCIONÁRIOS</a>
+                <a href="">INSUMOS</a>
+                <a href="">ENTRADAS</a>
+                <a href="">CARDÁPIO</a>
+                <a href="">VENDAS</a>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div  class="header-content">
+            <div id="menu-button" onclick="openNav()">&#9776</div>
+<!--            <div id="logo"></div>-->
+            <a href="{{url_for('login')}}"><img id="logo" src="../static/imgdois.png" alt="Royal Burger"></a>
+        </div>
+        <div>
+            <a class="titulo" href="{{url_for('login')}}"><h1>ROYAL BURGER</h1></a>
+        </div>
+        <a href="{{url_for('logout')}}">○</a>
+        <div id="img-user"></div>
+
+
+    </header>
+    {% block content %}
+        <main>
+            <a href="{{url_for('pessoas')}}">PESSOAS</a>
+
+        </main>
+    {% endblock %}
+
+    <script src="../static/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block conteudo %}
+<h1>Lista de Tarefas</h1>
+
+{% for item in lista %}
+    <h2>{{ item.nome_tarefa }} #{{ item.id_tarefa }}</h2>
+    <h5>{{ item.descricao }}</h5>
+    <p>Data: {{ item.data }}</p>
+    <p>Horário: {{ item.horario }}</p>
+    <p>Status: {{ item.status }}</p>
+    <a href="{{ url_for('editar', id_tarefa=item.id_tarefa) }}" >Editar</a>
+{% endfor %}
+
+{% endblock conteudo %}

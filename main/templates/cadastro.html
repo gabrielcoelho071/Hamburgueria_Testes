@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block conteudo %}
+    <h3>Cadastro de Tarefas</h3>
+    <div class="formulario">
+        <form action="{{ url_for('cadastrar') }}" method="POST">
+            <p>
+                <label>Nome da Tarefa</label>
+                <input type="text" name="form_nome">
+            </p>
+            <p>
+                <label>Data da Tarefa</label>
+                <input type="text" name="form_data">
+            </p>
+            <p>
+                <label>Horário da Tarefa</label>
+                <input type="text" name="form_horario">
+            </p>
+            <p>
+                <label>Descrição da Tarefa</label>
+                <input type="text" name="form_descricao">
+            </p>
+            <p>
+                <label>Status da Tarefa</label>
+                <select name="form_status" id="status">
+                    <option value="">Selecione um status</option>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Em Progresso">Em Progresso</option>
+                    <option value="Concluída">Concluída</option>
+                </select>
+            </p>
+                <button><a>adicionar</a></button>
+                <a href="{{ url_for('listar') }}">
+                    <button>Cancelar</button>
+                </a>
+        </form>
+    </div>
+{% endblock conteudo %}

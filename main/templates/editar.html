@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block conteudo %}
+    <form action="{{ url_for('editar', id_tarefa=tarefa.id_tarefa) }}" method="POST">
+        <p>
+            <label>Nome</label>
+            <input type="text" name="form_nome" value="{{ tarefa.nome_tarefa }}" required>
+        </p>
+        <p>
+            <label>Data</label>
+            <input type="text" name="form_data" value="{{ tarefa.data }}">
+        </p>
+        <p>
+            <label>Horário</label>
+            <input type="text" name="form_horario" value="{{ tarefa.horario }}">
+        </p>
+        <p>
+            <label>Status da Tarefa</label>
+            <select name="form_status" required>
+                <option value="">Selecione um status</option>
+                <option value="Pendente" {% if tarefa.status == 'Pendente' %}selected{% endif %}>Pendente</option>
+                <option value="Em Progresso" {% if tarefa.status == 'Em Progresso' %}selected{% endif %}>Em Progresso</option>
+                <option value="Concluída" {% if tarefa.status == 'Concluída' %}selected{% endif %}>Concluída</option>
+            </select>
+        </p>
+        <p>
+            <label>Descrição</label>
+            <input type="text" name="form_descricao" value="{{ tarefa.descricao }}">
+        </p>
+        <hr>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+{% endblock conteudo %}

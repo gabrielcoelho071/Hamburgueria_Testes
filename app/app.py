@@ -737,6 +737,7 @@ def main(page: ft.Page):
 
             )
 
+            # ---------------- ROTA OBSERVAÇÕES ----------------
         # ---------------- ROTA OBSERVAÇÕES ----------------
         if page.route.startswith("/observacoes"):
             # ==========================
